@@ -17,7 +17,7 @@ import pandas as pd
 class text(object):
     title = 'Twittermoto'
     maintext = 'A Twitter-based earthquake detector'
-    subtext = 'here is some subtext'
+    subtext = ''#'here is some subtext'
     pitch = '''Twittermoto is a disruptive, cloud-based, agile start-up aiming to
      delivering real-time earthquake detection based on social media trends. This is
      achieved through the use of deep convoluted neural networks, and block chain technology.
