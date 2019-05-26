@@ -19,6 +19,8 @@ def makeplot():
     plotter.plot_detection_vs_time(axes[1], time, C_t)
     plotter.plot_USGS(axes[1], df)
 
+    axes[0].set_ylabel('Earthquake\ntweets/min')
+    axes[1].set_ylabel('Detection\nfunction [-]')
     axes[1].set_ylim(0, 2)
     axes[1].set_xlim(min(time), max(time))
     axes[1].legend()
