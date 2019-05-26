@@ -36,7 +36,7 @@ class text(object):
     subtext = ''#'here is some subtext'
     pitch = '''Twittermoto is a disruptive, cloud-based, agile start-up aiming to
     delivering real-time earthquake detection based on social media trends. This is
-    achieved through the use of deep convoluted neural networks, and block chain technology.
+    achieved through the use of deep convolutional neural networks, and block chain technology.
     Twittermoto utilizes the synergistic energy of big data and machine learning to deliver real-world solutions and other buzzwords.
 
     '''
