@@ -9,26 +9,26 @@ from twittermoto import plotter
 
 
 def makeplot():
-    time, tweet_freq, C_t, DAs, df = plotter.get_data(settings.TWITTERMOTO_DB)
+    data = plotter.get_data(settings.TWITTERMOTO_DB)
 
     fig, axes = plt.subplots(2, 1, sharex=True)
-    plotter.plot_detection_region(axes[0], DAs[0])
-    plotter.plot_tweetcount_vs_time(axes[0], time, tweet_freq)
-    plotter.plot_USGS(axes[0], df)
+    plotter.plot_detection_region(axes[0], data)
+    plotter.plot_tweetcount_vs_time(axes[0], data)
+    plotter.plot_USGS(axes[0], data)
 
-    plotter.plot_detection_vs_time(axes[1], time, C_t)
-    plotter.plot_USGS(axes[1], df)
+    plotter.plot_detection_vs_time(axes[1], data)
+    plotter.plot_USGS(axes[1], data)
 
     axes[0].set_ylabel('Earthquake\ntweets/min')
     axes[1].set_ylabel('Detection\nfunction [-]')
     axes[1].set_ylim(0, 2)
-    axes[1].set_xlim(min(time), max(time))
+    axes[1].set_xlim(min(data.time), max(data.time))
     axes[1].legend()
     fig.autofmt_xdate()
     myFmt = mdates.DateFormatter('%d-%b %H:%M')
     axes[1].xaxis.set_major_formatter(myFmt)
 
-    return fig
+    return fig, data
 
 
 
@@ -47,13 +47,13 @@ class text(object):
 
 
 def homepage(request):
-    fig = makeplot()
+    fig, data= makeplot()
     graphic = fig2buffer(fig)
 
 
     return render(request=request,
     template_name='main/index.html',
-    context={'text': text, 'graphics':graphic})
+    context={'text': text, 'graphics':graphic, 'detections':plotter.list_detections(data)})
 
 
 

@@ -41,6 +41,36 @@
             <br>
             <img src="data:image/png;base64,{{graphics|safe}}" class="img-fluid">
           </div>
+
+          <div class="col-md-8 mx-auto text-center">
+            <h2 class="section-heading text-primary">Recent Earthquake Detections</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Time</th>
+                <th scope="col">Confidence</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for i, earthquake in detections.iterrows%}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{earthquake.time}}</td>
+                <td>{{earthquake.confidence}}</td>
+                <td>
+                  {% if earthquake.confirmed%}
+                  <span class="badge badge-pill badge-success">Confirmed</span>
+                  {%else%}
+                  <span class="badge badge-pill badge-danger">False Alarm</span>
+                  {%endif%}
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+          </div>
         </div>
       </div>
     </section>
